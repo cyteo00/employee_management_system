@@ -34,6 +34,12 @@ public class Employee {
     public Employee() {
     }
 
+    public Employee(String employeeId, String employeeName, String employeePosition) {
+        this.employeeId = employeeId;
+        this.employeeName = employeeName;
+        this.employeePosition = employeePosition;
+    }
+
     public String getEmployeeId() {
         return employeeId;
     }
