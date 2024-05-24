@@ -9,13 +9,15 @@ A Java Spring Boot project which able to perform CRUD operations on employee dat
 ## Run the Project
 1. Open project with Intellij IDEA.
 2. Check the database connection in src/main/resources/application.properties file.
-3. Navigate to com.example.employee_ms.EmployeeMsApplication. Right click it and hit Run.
-4. Check if the localhost server is started successfully.
-5. Open the Postman.
-6. Create a new collections called "employee_ms".
-7. Under the Authorization section, select Basic Auth and provide the username and password.
-8. Right click the "employee_ms" and select "Add request".
-9. Select the request method and provide the url accordingly.
+3. Open MySQL Workbench.
+4. Create a database named "employee_ms".
+5. Navigate to com.example.employee_ms.EmployeeMsApplication. Right click it and hit Run.
+6. Check if the localhost server is started successfully.
+7. Open the Postman.
+8. Create a new collections named "employee_ms".
+9. Under the Authorization section, select Basic Auth and provide the username and password.
+10. Right click the "employee_ms" and select "Add request".
+11. Select the request method and provide the url accordingly.
 ## API endpoints
 ### Department:
 * GET - "http://localhost:8080/department" - gets list of all departments
