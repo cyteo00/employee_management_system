@@ -32,15 +32,21 @@ public class DepartmentController {
         return "Created Successfully";
     }
 
-    @PutMapping("update")
-    public String updateDepartmentDetails(@Valid @RequestBody Department department){
-        departmentService.updateDepartment(department);
+    @PutMapping("update/{departmentId}")
+    public String updateDepartmentDetails(@Valid @RequestBody Department department, @PathVariable String departmentId){
+        departmentService.updateDepartment(department, departmentId);
         return "Updated Successfully";
     }
 
     @DeleteMapping("delete/{departmentId}")
     public String deleteDepartmentDetails(@PathVariable("departmentId") String departmentId){
         departmentService.deleteDepartment(departmentId);
+        return "Deleted Successfully";
+    }
+
+    @DeleteMapping("delete")
+    public String deleteAllDepartmentDetails(){
+        departmentService.deleteAllDepartment();
         return "Deleted Successfully";
     }
 }

@@ -32,9 +32,9 @@ public class EmployeeService {
     }
 
     @CacheEvict(value = "employees", allEntries = true)
-    public void updateEmployee(Employee employee){
+    public void updateEmployee(Employee employee, String employeeId){
         System.out.println("update");
-        Optional<Employee> emp = employeeRepository.findById(employee.getEmployeeId());
+        Optional<Employee> emp = employeeRepository.findById(employeeId);
         if (emp.isPresent()){
             employeeRepository.save(employee);
         }
@@ -55,9 +55,15 @@ public class EmployeeService {
         }
     }
 
+    @CacheEvict(value = "employees", allEntries = true)
+    public void deleteAllEmployee() {
+        System.out.println("delete all");
+        employeeRepository.deleteAll();
+    }
+
     @Cacheable("employees")
     public Employee getEmployee(String employeeId){
-        System.out.println("gets");
+        System.out.println("get");
         Optional<Employee> emp = employeeRepository.findById(employeeId);
         if (emp.isPresent()){
             return emp.get();
@@ -69,8 +75,7 @@ public class EmployeeService {
 
     @Cacheable("employees")
     public List<Employee> getAllEmployee(){
-        System.out.println("get");
+        System.out.println("get all");
         return employeeRepository.findAll();
     }
-
 }

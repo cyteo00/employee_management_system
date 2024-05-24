@@ -34,8 +34,8 @@ public class ProjectService {
     }
 
     @CacheEvict(value = "projects", allEntries = true)
-    public void updateProject(Project project) {
-        Optional<Project> proj = projectRepository.findById(project.getProjectId());
+    public void updateProject(Project project, String projectId) {
+        Optional<Project> proj = projectRepository.findById(projectId);
         if (proj.isPresent()) {
             projectRepository.save(project);
         } else {
@@ -63,6 +63,12 @@ public class ProjectService {
         } else {
             throw new IdNotFoundException("Project ID does not exist. Delete failed");
         }
+    }
+
+    @CacheEvict(value = "projects", allEntries = true)
+    public void deleteAllProject() {
+        System.out.println("delete all");
+        projectRepository.deleteAll();
     }
 
     @Cacheable("projects")

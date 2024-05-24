@@ -32,9 +32,9 @@ public class ProjectController {
         return "Created Successfully";
     }
 
-    @PutMapping("update")
-    public String updateProjectDetails(@Valid @RequestBody Project project) {
-        projectService.updateProject(project);
+    @PutMapping("update/{projectId}")
+    public String updateProjectDetails(@Valid @RequestBody Project project, @PathVariable String projectId) {
+        projectService.updateProject(project, projectId);
         return "Updated Successfully";
     }
 
@@ -47,6 +47,12 @@ public class ProjectController {
     @DeleteMapping("delete/{projectId}")
     public String deleteProjectDetails(@PathVariable("projectId") String projectId) {
         projectService.deleteProject(projectId);
+        return "Deleted Successfully";
+    }
+
+    @DeleteMapping("delete")
+    public String deleteAllProjectDetails() {
+        projectService.deleteAllProject();
         return "Deleted Successfully";
     }
 }

@@ -17,7 +17,7 @@ public class EmployeeController {
     }
 
     @GetMapping("{employeeId}")
-    public Employee getEmployeeDetails(@PathVariable("employeeId") String employeeId){
+    public Employee getEmployeeDetails(@PathVariable String employeeId){
         return employeeService.getEmployee(employeeId);
     }
 
@@ -32,15 +32,21 @@ public class EmployeeController {
         return "Created Successfully";
     }
 
-    @PutMapping("update")
-    public String updateEmployeeDetails(@Valid @RequestBody Employee employee){
-        employeeService.updateEmployee(employee);
+    @PutMapping("update/{employeeId}")
+    public String updateEmployeeDetails(@Valid @RequestBody Employee employee, @PathVariable String employeeId){
+        employeeService.updateEmployee(employee, employeeId);
         return "Updated Successfully";
     }
 
     @DeleteMapping("delete/{employeeId}")
-    public String deleteEmployeeDetails(@PathVariable("employeeId") String employeeId){
+    public String deleteEmployeeDetails(@PathVariable String employeeId){
         employeeService.deleteEmployee(employeeId);
+        return "Deleted Successfully";
+    }
+
+    @DeleteMapping("delete")
+    public String deleteAllEmployeeDetails(){
+        employeeService.deleteAllEmployee();
         return "Deleted Successfully";
     }
 }

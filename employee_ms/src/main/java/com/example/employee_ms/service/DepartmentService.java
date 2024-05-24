@@ -31,8 +31,8 @@ public class DepartmentService {
     }
 
     @CacheEvict(value = "departments", allEntries = true)
-    public void updateDepartment(Department department){
-        Optional<Department> dept = departmentRepository.findById(department.getDepartmentId());
+    public void updateDepartment(Department department, String departmentId){
+        Optional<Department> dept = departmentRepository.findById(departmentId);
         if (dept.isPresent()){
             departmentRepository.save(department);
         }
@@ -50,6 +50,11 @@ public class DepartmentService {
         else {
             throw new IdNotFoundException("Department ID does not exist. Delete failed");
         }
+    }
+
+    @CacheEvict(value = "departments", allEntries = true)
+    public void deleteAllDepartment() {
+        departmentRepository.deleteAll();
     }
 
     @Cacheable("departments")
