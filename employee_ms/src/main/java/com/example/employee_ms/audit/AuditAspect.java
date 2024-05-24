@@ -47,6 +47,16 @@ public class AuditAspect {
         auditLogRepository.save(log);
     }
 
+    @Before("execution(* com.example.employee_ms.service.EmployeeService.deleteAllEmployee(..))")
+    public void logDeleteAllEmployee() {
+        AuditLog log = new AuditLog();
+        log.setUsername("admin");
+        log.setAction("Delete all employee ");
+        log.setTimestamp(new Date());
+
+        auditLogRepository.save(log);
+    }
+
     @Before("execution(* com.example.employee_ms.service.EmployeeService.getAllEmployee(..))")
     public void logGetAllEmployee() {
         AuditLog log = new AuditLog();
